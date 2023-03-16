@@ -1,20 +1,17 @@
 import React from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Cart } from "../pages/cart/Cart";
 import { Feed } from "../pages/feed/Feed";
-import { Restaurant } from "../pages/restaurant/Restaurant";
+import { Adress } from "../pages/adress/Adress";
 
-function Router() {
+export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Feed/>} />
+        <Route index element={<Feed />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/restaurant" element={<Restaurant/>} />
+        <Route path="/adress" element={<Adress />} />
       </Routes>
     </BrowserRouter>
   );
-}
-
-export default Router;
+};

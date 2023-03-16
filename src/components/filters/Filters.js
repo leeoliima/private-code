@@ -1,4 +1,5 @@
 import React from "react";
+import { SearchInput } from "./styled";
 
 export const FiltersForSeach = (props) => {
   const onChangeName =(event) =>{
@@ -6,7 +7,7 @@ export const FiltersForSeach = (props) => {
   };
   
     return (
-        <input
+        <SearchInput
         type={"text"}
         placeholder="Restaurante"
         value={props.inputSearch}
