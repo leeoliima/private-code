@@ -30,3 +30,5 @@ export const goToEditarEndereco = (navigate) => {
 }
 export const goToBusca = (navigate) => {
   navigate('/busca')}
+
+  
