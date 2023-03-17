@@ -1,13 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiltersForSeach } from "../../components/filters/Filters";
-import { Arrow, Card, Cards, ContainerInput, Filters } from "./styled";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Card,
+  CardDescription,
+  CardPrice,
+  Cards,
+  CardTitle,
+  Categories,
+  ContainerBody,
+  ContainerCategories,
+  ContainerInput,
+  CustomModal,
+  DivInfo,
+  ImgPopUp,
+  LegendProduct,
+  SearchButton,
+} from "./styled";
 import { categorias } from "../../constants/db.json";
 import { produtos } from "../../constants/db.json";
 import Modal from "react-modal";
-import Vector from "../../assets/Vector.png";
 import { Cart } from "../cart/Cart";
-
+import LeftArrow from "../../assets/LeftArrow.png";
+import ButtonSearch from "../../assets/SearchButton.png";
+import RightArrow from "../../assets/RightArrow.png";
+import ImgCard1 from "../../assets/ImgCard1.png";
+import { FinishButton } from "../cart/styled";
 
 Modal.setAppElement("#root");
 
@@ -20,6 +40,8 @@ export const Feed = () => {
   const [data, setdata] = useState();
   const [quantity, setQuantity] = useState(1);
   const [cartItems, setCartItems] = useState([]);
+  const [categoriesPosition, setCategoriesPosition] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     // atualiza o carrinho toda vez que o estado de cartItems for alterado
@@ -51,10 +73,19 @@ export const Feed = () => {
     handleCloseModal();
   };
 
+  const handleCategoryClick = (categoria) => {
+    setSelectedCategory(categoria);
+  };
+
   const removeFromCart = (itemToRemove) => {
-    console.log("itemToRemove", itemToRemove);
     setCartItems((prevCartItems) =>
-      prevCartItems.filter((item) => item.id !== itemToRemove.id)
+      prevCartItems
+        .map((item) =>
+          item.id === itemToRemove.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
     );
   };
 
@@ -79,72 +110,97 @@ export const Feed = () => {
   const listCategory =
     filterProducts &&
     filterProducts.map((product) => {
-      return (
-        <div key={product.id}>
-          <button onClick={() => setCategory(product.category)}>
-            {product.category}
-          </button>
-        </div>
-      );
+      if (selectedCategory && product.nome === selectedCategory.nome) {
+        return (
+          <div key={product.id}>
+            <button onClick={() => handleCategoryClick(product)}>
+              {product.nome}
+            </button>
+          </div>
+        );
+      }
     });
+  console.log(listCategory);
 
   return (
-    <>
+    <ContainerBody>
       <ContainerInput>
         <FiltersForSeach
           data={data}
           inputSearch={inputSearch}
           setInputSearch={setInputSearch}
         />
+        <SearchButton>
+          <img src={ButtonSearch} />
+        </SearchButton>
       </ContainerInput>
 
-      <Filters>
-        <Arrow src={Vector} />
-        <div>
-          <ul>
-            {categorias.map((category) => (
-              <h5 key={category.id}>{category.nome}</h5>
-            ))}
-          </ul>
-        </div>
+      <ContainerCategories>
+        <ArrowLeft src={LeftArrow} />
+
+        {categorias.map((category) => (
+          <Categories
+            key={category.id}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category.nome} <span />
+          </Categories>
+        ))}
+
         <div>{listCategory}</div>
-      </Filters>
+        <ArrowRight src={RightArrow} />
+      </ContainerCategories>
 
       <Cart
         removeFromCart={removeFromCart}
         clearCart={clearCart}
         cartTotal={cartTotal}
         cartItems={cartItems}
+        handleAddToCart={handleAddToCart}
       />
-
-      <Cards>
+      <Card>
         {filterProducts.map((product) => (
-          <Card key={product.id} onClick={() => handleOpenModal(product)}>
-            <h5>{product.nome}</h5>
-            <p>Preço: R${product.preco.toFixed(2)}</p>
-          </Card>
+          <Cards key={product.id} onClick={() => handleOpenModal(product)}>
+            <img src={ImgCard1} />
+            <LegendProduct>
+              <h5>{product.nome}</h5>
+              <p>Preço: R${product.preco.toFixed(2)}</p>
+            </LegendProduct>
+          </Cards>
         ))}
-      </Cards>
+      </Card>
 
-      <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
-        <h2>{selectedProduct && selectedProduct.nome}</h2>
-        <p>{selectedProduct && selectedProduct.descricao}</p>
-        <p>Preço: R${selectedProduct && selectedProduct.preco.toFixed(2)}</p>
-        <label>Quantidade:</label>
-        <input
-          type="number"
-          defaultValue="1"
-          min="1"
-          max="10"
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-        <button
-          onClick={() => {
-            handleAddToCart(selectedProduct, quantity)}}
-        >
-          Adicionar ao carrinho
-        </button>
-      </Modal>
-    </>
+      <CustomModal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+        <div>
+          <ImgPopUp src={ImgCard1} />
+        </div>
+        <DivInfo>
+          <CardTitle>{selectedProduct && selectedProduct.nome}</CardTitle>
+          <CardDescription>
+            {selectedProduct && selectedProduct.descricao}
+          </CardDescription>
+          <CardPrice>
+            Preço: R${selectedProduct && selectedProduct.preco.toFixed(2)}
+          </CardPrice>
+          <label>Quantidade:</label>
+          <input
+            type="number"
+            defaultValue="1"
+            min="1"
+            max="10"
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+
+          <FinishButton
+            onClick={() => {
+              handleAddToCart(selectedProduct, quantity);
+            }}
+            disabled={!selectedProduct}
+          >
+            Adicionar
+          </FinishButton>
+        </DivInfo>
+      </CustomModal>
+    </ContainerBody>
   );
 };

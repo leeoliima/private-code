@@ -6,7 +6,7 @@ export const FiltersForSeach = (props) => {
     props.setInputSearch(event.target.value);
   };
   
-    return (
+    return ( 
         <SearchInput
         type={"text"}
         placeholder="Restaurante"

@@ -1,27 +1,17 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Modal from "react-modal";
-import { goToFeed } from "../../routers/Coordinator";
-import { Form } from "./styled";
-import { useNavigate } from "react-router-dom";
 
+import { goToFeed } from "../../routers/Coordinator";
+import { Form, Inputs, InputSelect } from "./styled";
+import { useNavigate } from "react-router-dom";
+import { FinishButton } from "../cart/styled";
 
 export const Adress = () => {
   const { register, handleSubmit, setValue, setFocus } = useForm();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [setSelected] = useState(null);
   const navigate = useNavigate();
-
-  const handleOpenModal = (product) => {
-    setSelected(product);
-    setModalIsOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setSelected(null);
-    setModalIsOpen(false);
-  };
 
   const onSubmit = (e) => {};
 
@@ -38,53 +28,57 @@ export const Adress = () => {
 
   return (
     <>
-
-<Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           Forma de entrega:
-          <select>
+          <br />
+          <InputSelect>
             <option>Delivery</option>
             <option>Retirar no local</option>
-          </select>
+          </InputSelect>
         </label>
+        <br />
         <label>
           CEP:
-          <input type="text" {...register("cep")} onBlur={checkCEP} />
+          <br />
+          <Inputs type="text" {...register("cep")} onBlur={checkCEP} />
         </label>
         <label>
-          Rua:
-          <input type="text" {...register("address")} />
+          Bairro: <br />
+        </label>
+        <label>
+          <Inputs type="text" {...register("neighborhood")} />
         </label>
         <label>
           Número:
-          <input type="text" {...register("addressNumber")} />
+          <Inputs type="text" {...register("addressNumber")} />
         </label>
-        <label>
-          Bairro:
-          <input type="text" {...register("neighborhood")} />
-        </label>
+
         <label>
           Cidade:
-          <input type="text" {...register("city")} />
+          <Inputs type="text" {...register("city")} />
         </label>
         <label>
+          Rua:
+          <Inputs type="text" {...register("address")} />
+        </label>
+
+        <label>
           Estado:
-          <input type="text" {...register("uf")} />
+          <Inputs type="text" {...register("uf")} />
         </label>
         <label>
           Complemento:
-          <input type="text" {...register("complement")} />
+          <Inputs type="text" {...register("complement")} />
         </label>
         <label>
           Referência:
-          <input type="text" {...register("referency")} />
+          <Inputs type="text" {...register("referency")} />
         </label>
-        <button type="text" onClick={()=> goToFeed(navigate)}>Continuar</button>
+        <FinishButton type="text" onClick={() => goToFeed(navigate)}>
+          Continuar
+        </FinishButton>
       </Form>
-      <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}       
-      >
-      
-      </Modal>
     </>
   );
 };
