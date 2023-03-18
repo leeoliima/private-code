@@ -1,4 +1,4 @@
-import Modal from "react-modal";
+import ReactModal from "react-modal";
 import styled from "styled-components";
 
 export const CartContainer = styled.div`
@@ -169,7 +169,7 @@ export const CancelButton = styled.button`
   height: 56.81px;
   top: 994px;
   bottom: 0;
-  background: #fff;
+  background: #ffffff;
   border: 1px solid #c6c6c6;
   margin-right: 20px;
   font-family: "Nunito";
@@ -193,16 +193,7 @@ export const RemoveButton = styled.button`
   cursor: pointer;
 `;
 
-export const CustomModal = styled(Modal)`
-  box-sizing: border-box;
-  font-size: 16px;
-  position: absolute;
-  width: 1111px;
-  height: 630px;
-  left: 275px;
-  top: 199px;
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  box-shadow: 0px 2.88px 8px rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-`;
+export const CustomModal = styled(ReactModal)`
+margin: 0;
+padding: 0; 
+ `;

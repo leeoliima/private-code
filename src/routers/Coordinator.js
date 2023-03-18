@@ -1,6 +1,6 @@
 export const goToBack = (navigate) => {
-  navigate(-1)
-}
+  navigate(-1);
+};
 // export const goToLoginPage = (navigate) => {
 //   navigate('/')
 // }
@@ -8,27 +8,26 @@ export const goToBack = (navigate) => {
 //   navigate('/signup')
 // }
 export const goToCadastroEndereco = (navigate) => {
-  navigate('/cadastro-endereco')
-}
+  navigate("/cadastro-endereco");
+};
 export const goToFeed = (navigate) => {
-  navigate('/')
-}
+  navigate("/");
+};
 export const goToPedidoEmAndamento = (navigate) => {
-  navigate('/pedido-em-andamento')
-}
+  navigate("/pedido-em-andamento");
+};
 export const goToCarrinho = (navigate) => {
-  navigate('/carrinho')
-}
+  navigate("/carrinho");
+};
 export const goToAdress = (navigate) => {
-  navigate(`/adress`)
-}
+  navigate(`/adress`);
+};
 export const goToEditarCadastro = (navigate) => {
-  navigate('/editar-cadastro')
-}
+  navigate("/editar-cadastro");
+};
 export const goToEditarEndereco = (navigate) => {
-  navigate('/editar-endereco')
-}
+  navigate("/editar-endereco");
+};
 export const goToBusca = (navigate) => {
-  navigate('/busca')}
-
-  
+  navigate("/busca");
+};

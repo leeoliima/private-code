@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiltersForSeach } from "../../components/filters/Filters";
 import {
+  ArrowButton,
   ArrowLeft,
   ArrowRight,
   Card,
@@ -10,6 +11,7 @@ import {
   Cards,
   CardTitle,
   Categories,
+  CategoryMenu,
   ContainerBody,
   ContainerCategories,
   ContainerInput,
@@ -18,6 +20,9 @@ import {
   ImgPopUp,
   LegendProduct,
   SearchButton,
+  User,
+  UserImg,
+  UserName,
 } from "./styled";
 import { categorias } from "../../constants/db.json";
 import { produtos } from "../../constants/db.json";
@@ -28,6 +33,7 @@ import ButtonSearch from "../../assets/SearchButton.png";
 import RightArrow from "../../assets/RightArrow.png";
 import ImgCard1 from "../../assets/ImgCard1.png";
 import { FinishButton } from "../cart/styled";
+import UserPhoto from "../../assets/user.png";
 
 Modal.setAppElement("#root");
 
@@ -40,12 +46,10 @@ export const Feed = () => {
   const [data, setdata] = useState();
   const [quantity, setQuantity] = useState(1);
   const [cartItems, setCartItems] = useState([]);
-  const [categoriesPosition, setCategoriesPosition] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [position, setPosition] = useState(0);
 
-  useEffect(() => {
-    // atualiza o carrinho toda vez que o estado de cartItems for alterado
-  }, [cartItems]);
+  useEffect(() => {}, [cartItems]);
 
   // Lógica para modal do card
   const handleOpenModal = (product) => {
@@ -75,6 +79,14 @@ export const Feed = () => {
 
   const handleCategoryClick = (categoria) => {
     setSelectedCategory(categoria);
+  };
+
+  const handleMoveLeft = () => {
+    setPosition(position - 100);
+  };
+
+  const handleMoveRight = () => {
+    setPosition(position + 100);
   };
 
   const removeFromCart = (itemToRemove) => {
@@ -120,7 +132,6 @@ export const Feed = () => {
         );
       }
     });
-  console.log(listCategory);
 
   return (
     <ContainerBody>
@@ -131,24 +142,27 @@ export const Feed = () => {
           setInputSearch={setInputSearch}
         />
         <SearchButton>
-          <img src={ButtonSearch} />
+          <img src={ButtonSearch} alt="Lupa pesquisa" />
         </SearchButton>
       </ContainerInput>
 
       <ContainerCategories>
-        <ArrowLeft src={LeftArrow} />
-
-        {categorias.map((category) => (
-          <Categories
-            key={category.id}
-            onClick={() => setSelectedCategory(category)}
-          >
-            {category.nome} <span />
-          </Categories>
-        ))}
-
-        <div>{listCategory}</div>
-        <ArrowRight src={RightArrow} />
+        <ArrowButton onClick={handleMoveLeft}>
+          <ArrowLeft src={LeftArrow} />
+        </ArrowButton>
+        <CategoryMenu position={position}>
+          {categorias.map((category) => (
+            <Categories
+              key={category.id}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category.nome} <span />
+            </Categories>
+          ))}
+        </CategoryMenu>
+        <ArrowButton onClick={handleMoveRight}>
+          <ArrowRight src={RightArrow} />
+        </ArrowButton>
       </ContainerCategories>
 
       <Cart
@@ -161,18 +175,19 @@ export const Feed = () => {
       <Card>
         {filterProducts.map((product) => (
           <Cards key={product.id} onClick={() => handleOpenModal(product)}>
-            <img src={ImgCard1} />
+            <img src={ImgCard1} alt="Imagem do produto do card" />
             <LegendProduct>
               <h5>{product.nome}</h5>
               <p>Preço: R${product.preco.toFixed(2)}</p>
             </LegendProduct>
           </Cards>
+          // Obs: Foi deixado apenas uma imagem, pois fiquei na dúvida se poderia alterar o banco de dados para adicionar uma coluna imagens e asasim, posteriormente fazer o map para cada card respectivo.
         ))}
       </Card>
 
       <CustomModal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
         <div>
-          <ImgPopUp src={ImgCard1} />
+          <ImgPopUp src={ImgCard1} alt="Imagem do produto do card" />
         </div>
         <DivInfo>
           <CardTitle>{selectedProduct && selectedProduct.nome}</CardTitle>
@@ -201,6 +216,10 @@ export const Feed = () => {
           </FinishButton>
         </DivInfo>
       </CustomModal>
+      <User>
+        <UserImg src={UserPhoto} alt="Foto do usuário" />
+        <UserName>Amanda Morais</UserName>
+      </User>
     </ContainerBody>
   );
 };

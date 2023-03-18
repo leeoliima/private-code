@@ -8,7 +8,7 @@ export const ContainerBody = styled.div`
   height: 1042px;
   left: 45px;
   top: 38px;
-  background: #f0f4f5;
+  background: #F0F4F5;
   border: 1px solid #ffffff;
   box-shadow: 0px 2.88px 8px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
@@ -135,8 +135,7 @@ export const Categories = styled.div`
   align-items: center;
   color: #696969;
   margin: 20 20px 0 20px;
-  span {
-    /* position: absolute; */
+  span {    
     width: 34px;
     height: 0px;
     left: 265px;
@@ -144,19 +143,6 @@ export const Categories = styled.div`
     border: 0.530753px solid #ececec;
     transform: rotate(90deg);
   }
-`;
-
-export const Modelo = styled.div`
-  box-sizing: border-box;
-  position: absolute;
-  width: 1111px;
-  height: 630px;
-  left: 275px;
-  top: 199px;
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  box-shadow: 0px 2.88px 8px rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
 `;
 
 export const CardTitle = styled.h5`
@@ -185,8 +171,8 @@ export const CustomModal = styled(ReactModal)`
   width: 1111px;
   height: 630px;
   left: 275px;
-  top: 199px;
-  background: #ffffff;
+  top: 199px;  
+  background-color:#fff;
   border: 1px solid #ffffff;
   box-shadow: 0px 2.88px 8px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
@@ -207,4 +193,57 @@ export const DivInfo = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+export const CategoryMenu = styled.div`
+  display: flex;
+  overflow: hidden;
+  flex-wrap: nowrap;  
+  transition: transform 0.3s ease;
+  transform: translateX(${props => props.position}px);
+ 
+`;
+
+export const ArrowButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin: 0 10px;
+`;
+
+export const User = styled.div`
+  box-sizing: border-box;
+  /* position: absolute; */
+  width: 1213px;
+  height: 122px;
+  left: 45px;
+  top: 958px;
+  background: #FFFFFF;
+  border: 0.906103px solid #FFFFFF;
+  box-shadow: 0px 2.60958px 7.24883px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+export const UserImg = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 30px;
+`;
+
+export const UserName = styled.p`
+  width: 161px;
+  height: 22px;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 110.9%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #696969;
 `;

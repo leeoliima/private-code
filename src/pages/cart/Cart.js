@@ -15,7 +15,6 @@ import {
   ButtonMore,
   CustomModal,
 } from "./styled";
-import { useNavigate } from "react-router-dom";
 import PrivateCode from "../../assets/SideDark1.png";
 import Check from "../../assets/check.svg";
 import X from "../../assets/x.svg";
@@ -31,7 +30,6 @@ export const Cart = ({
   cartTotal,
   handleAddToCart,
 }) => {
-  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -46,7 +44,7 @@ export const Cart = ({
     <CartContainer>
       <SpanRow />
       <DivContainer>
-        <ImgCart src={PrivateCode} />
+        <ImgCart src={PrivateCode} alt="Logo da Private Code" />
       </DivContainer>
       <SpanRow />
 
@@ -75,14 +73,14 @@ export const Cart = ({
 
       <ContainerTotal>
         <CartTotal>
-          <div>Total:</div> <span>R$ {cartTotal}</span>{" "}
+          <div>Total:</div> <span>R$ {cartTotal}</span>
         </CartTotal>
         <ButtonsContainer>
           <FinishButton onClick={handleOpenModal}>
-            <img src={Check} /> Finalizar
+            <img src={Check} alt="Imagem de um check V" /> Finalizar
           </FinishButton>
           <CancelButton onClick={() => clearCart()}>
-            <img src={X} /> Cancelar
+            <img src={X} alt="Imagem de um X" /> Cancelar
           </CancelButton>
         </ButtonsContainer>
       </ContainerTotal>
