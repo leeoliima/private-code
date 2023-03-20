@@ -38,6 +38,7 @@ export const Cart = ({
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
+    clearCart();
   };
 
   const handleCloseModal = () => {
@@ -53,11 +54,11 @@ export const Cart = ({
       <SpanRow />
 
       <CartHeader>
-  <span>Produto</span>
-  <span>Valor</span>
-  <span>Quantidade</span>
-  <span>Total</span>
-</CartHeader>
+        <span>Produto</span>
+        <span>Valor</span>
+        <span>Quantidade</span>
+        <span>Total</span>
+      </CartHeader>
 
       <ul>
         {cartItems.map((item, index) => (

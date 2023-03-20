@@ -76,6 +76,7 @@ export const Adress = () => {
                   <LabelCep>CEP:</LabelCep>
                   <InputCep
                     type="text"
+                    required
                     {...register("cep")}
                     onBlur={checkCEP}
                     placeholder="CEP"
@@ -87,6 +88,7 @@ export const Adress = () => {
                     type="text"
                     {...register("neighborhood")}
                     placeholder="Bairro"
+                    required
                   />
                 </div>
               </FormGroup>
@@ -98,6 +100,7 @@ export const Adress = () => {
                     type="text"
                     {...register("addressNumber")}
                     placeholder="Número"
+                    required
                   />
                 </div>
                 <div>
@@ -106,6 +109,7 @@ export const Adress = () => {
                     type="text"
                     {...register("city")}
                     placeholder="Cidade"
+                    required
                   />
                 </div>
               </FormGroup>
@@ -115,6 +119,7 @@ export const Adress = () => {
                 type="text"
                 {...register("uf")}
                 placeholder="Estado"
+                required
               />
               <LabelComplement>Complemento:</LabelComplement>
               <InputComplement

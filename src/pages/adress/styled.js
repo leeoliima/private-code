@@ -18,9 +18,8 @@ export const FormGroup = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 16px;  
+  margin-bottom: 16px;
 `;
-
 
 export const InputSelect = styled.select`
   box-sizing: border-box;
@@ -69,9 +68,9 @@ export const InputCep = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelCep = styled.label`
@@ -100,9 +99,9 @@ export const InputNeighborhood = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelNeighborhood = styled.label`
@@ -131,9 +130,9 @@ export const InputNumber = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelNumber = styled.label`
@@ -162,9 +161,9 @@ export const InputCity = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelCity = styled.label`
@@ -193,9 +192,9 @@ export const InputState = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelState = styled.label`
@@ -225,9 +224,9 @@ export const InputComplement = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelComplement = styled.label`
@@ -256,9 +255,9 @@ export const InputReferency = styled.input`
   background: #ffffff;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  ::placeholder{
+  ::placeholder {
     text-indent: 15px;
-}
+  }
 `;
 
 export const LabelReferency = styled.label`
