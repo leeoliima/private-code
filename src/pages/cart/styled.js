@@ -50,7 +50,23 @@ export const CartItem = styled.li`
   box-sizing: border-box;
   left: 1215px;
   background-color: ${(props) => (props.even ? "#F9F9F9" : "#fff")};
+  word-break: break-word; 
 `;
+
+export const SpanName = styled.span`
+  width: 40%;
+`;
+export const SpanPrice = styled.span`
+  width: 20%;
+`;
+export const SpanQuantity = styled.span`
+  width: 30%;
+`;
+export const SpanTotal = styled.span`
+  width: 20%;
+`;
+
+
 
 export const ContainerTotal = styled.div`
   position: absolute;

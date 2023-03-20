@@ -14,6 +14,10 @@ import {
   ButtonLeast,
   ButtonMore,
   CustomModal,
+  SpanName,
+  SpanPrice,
+  SpanQuantity,
+  SpanTotal,
 } from "./styled";
 import PrivateCode from "../../assets/SideDark1.png";
 import Check from "../../assets/check.svg";
@@ -49,28 +53,28 @@ export const Cart = ({
       <SpanRow />
 
       <CartHeader>
-        <span>Produto</span>
-        <span>Valor</span>
-        <span>Quantidade</span>
-        <span>Total</span>
-      </CartHeader>
+  <span>Produto</span>
+  <span>Valor</span>
+  <span>Quantidade</span>
+  <span>Total</span>
+</CartHeader>
+
       <ul>
         {cartItems.map((item, index) => (
           <CartItem key={item.id} even={index % 2 === 0}>
-            <span>{item.nome}</span>
-            <span>R${item.preco}</span>
-            <span>
+            <SpanName>{item.nome}</SpanName>
+            <SpanPrice>R${item.preco}</SpanPrice>
+            <SpanQuantity>
               <ButtonLeast
                 onClick={() => removeFromCart(item, 1)}
               ></ButtonLeast>
               {item.quantity}
               <ButtonMore onClick={() => handleAddToCart(item, 1)}></ButtonMore>
-            </span>
-            <span>R${item.preco * item.quantity}</span>
+            </SpanQuantity>
+            <SpanTotal>R${item.preco * item.quantity}</SpanTotal>
           </CartItem>
         ))}
       </ul>
-
       <ContainerTotal>
         <CartTotal>
           <div>Total:</div> <span>R$ {cartTotal}</span>

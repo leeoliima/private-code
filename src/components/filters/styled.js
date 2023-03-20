@@ -3,19 +3,19 @@ import styled from "styled-components";
 export const SearchInput = styled.input`
   box-sizing: border-box;
   position: absolute;
-  width: 405.2px;
+  width: 100%;
+  max-width: 405.2px;
   height: 52.14px;
-  left: 94px;
+  left: 50%;
+  transform: translateX(-50%);
   top: 35px;
   background: #ffffff;
   border: 0.912834px solid #d1d1d1;
   border-radius: 4.34533px;
   ::placeholder {
     text-indent: 20px;
-    width: 108px;
+    width: 100%;
     height: 18px;
-    left: 123.93px;
-    top: 91.38px;
     font-family: "Nunito";
     font-style: normal;
     font-weight: 500;
@@ -25,4 +25,12 @@ export const SearchInput = styled.input`
     align-items: center;
     color: #9c9c9c;
   }
+/* 
+  @media (max-width: 768px) {
+    height: 40px;
+  }
+  @media (max-width: 480px) {
+    height: 30px;
+  } */
 `;
+

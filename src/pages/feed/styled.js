@@ -4,15 +4,17 @@ import styled from "styled-components";
 export const ContainerBody = styled.div`
   box-sizing: border-box;
   position: absolute;
-  width: 1636px;
-  height: 1042px;
-  left: 45px;
-  top: 38px;
-  background: #F0F4F5;
-  border: 1px solid #ffffff;
-  box-shadow: 0px 2.88px 8px rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
+  width: 90%;
+  max-width: 1636px;
+  height: auto;
+  left: 2.5%;
+  top: 3.8%;
+  background: #f0f4f5;
+  border: 0.05em solid #ffffff;
+  box-shadow: 0px 0.18em 0.5em rgba(0, 0, 0, 0.08);
+  border-radius: 0.3em; 
 `;
+
 
 export const ContainerInput = styled.section`
   box-sizing: border-box;
@@ -32,7 +34,7 @@ export const SearchButton = styled.button`
     position: absolute;
     width: 63.01px;
     height: 52.14px;
-    left: 498px;
+    left: 798px;
     top: 34px;
     cursor: pointer;
     border-radius: 0px 4px 4px 0px;
@@ -135,7 +137,8 @@ export const Categories = styled.div`
   align-items: center;
   color: #696969;
   margin: 20 20px 0 20px;
-  span {    
+  cursor: pointer;
+  span {
     width: 34px;
     height: 0px;
     left: 265px;
@@ -171,8 +174,8 @@ export const CustomModal = styled(ReactModal)`
   width: 1111px;
   height: 630px;
   left: 275px;
-  top: 199px;  
-  background-color:#fff;
+  top: 199px;
+  background-color: #fff;
   border: 1px solid #ffffff;
   box-shadow: 0px 2.88px 8px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
@@ -198,10 +201,9 @@ export const DivInfo = styled.div`
 export const CategoryMenu = styled.div`
   display: flex;
   overflow: hidden;
-  flex-wrap: nowrap;  
+  flex-wrap: nowrap;
   transition: transform 0.3s ease;
-  transform: translateX(${props => props.position}px);
- 
+  transform: translateX(${(props) => props.position}px);
 `;
 
 export const ArrowButton = styled.button`
@@ -219,8 +221,8 @@ export const User = styled.div`
   height: 122px;
   left: 45px;
   top: 958px;
-  background: #FFFFFF;
-  border: 0.906103px solid #FFFFFF;
+  background: #ffffff;
+  border: 0.906103px solid #ffffff;
   box-shadow: 0px 2.60958px 7.24883px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: flex-start;
@@ -237,7 +239,7 @@ export const UserImg = styled.img`
 export const UserName = styled.p`
   width: 161px;
   height: 22px;
-  font-family: 'Nunito';
+  font-family: "Nunito";
   font-style: normal;
   font-weight: 500;
   font-size: 20px;

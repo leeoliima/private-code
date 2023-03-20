@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { FiltersForSeach } from "../../components/filters/Filters";
 import {
   ArrowButton,
@@ -24,8 +23,7 @@ import {
   UserImg,
   UserName,
 } from "./styled";
-import { categorias } from "../../constants/db.json";
-import { produtos } from "../../constants/db.json";
+import mock from "../../constants/db.json";
 import Modal from "react-modal";
 import { Cart } from "../cart/Cart";
 import LeftArrow from "../../assets/LeftArrow.png";
@@ -38,12 +36,10 @@ import UserPhoto from "../../assets/user.png";
 Modal.setAppElement("#root");
 
 export const Feed = () => {
-  const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [inputSearch, setInputSearch] = useState("");
-  const [category, setCategory] = useState("");
-  const [data, setdata] = useState();
+  const [data] = useState(mock);
   const [quantity, setQuantity] = useState(1);
   const [cartItems, setCartItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -52,6 +48,7 @@ export const Feed = () => {
   useEffect(() => {}, [cartItems]);
 
   // Lógica para modal do card
+
   const handleOpenModal = (product) => {
     setSelectedProduct(product);
     setModalIsOpen(true);
@@ -77,10 +74,6 @@ export const Feed = () => {
     handleCloseModal();
   };
 
-  const handleCategoryClick = (categoria) => {
-    setSelectedCategory(categoria);
-  };
-
   const handleMoveLeft = () => {
     setPosition(position - 100);
   };
@@ -102,36 +95,12 @@ export const Feed = () => {
   };
 
   const clearCart = () => {
-    setCartItems([]); // Define o carrinho como um array vazio
+    setCartItems([]);
   };
 
   const cartTotal = cartItems.reduce((total, item) => {
     return total + item.preco * item.quantity;
   }, 0);
-
-  const filterProducts =
-    produtos &&
-    produtos.filter((item) => {
-      if (inputSearch !== "") {
-        return item.nome.toLowerCase().includes(inputSearch.toLowerCase());
-      } else {
-        return item;
-      }
-    });
-
-  const listCategory =
-    filterProducts &&
-    filterProducts.map((product) => {
-      if (selectedCategory && product.nome === selectedCategory.nome) {
-        return (
-          <div key={product.id}>
-            <button onClick={() => handleCategoryClick(product)}>
-              {product.nome}
-            </button>
-          </div>
-        );
-      }
-    });
 
   return (
     <ContainerBody>
@@ -151,7 +120,7 @@ export const Feed = () => {
           <ArrowLeft src={LeftArrow} />
         </ArrowButton>
         <CategoryMenu position={position}>
-          {categorias.map((category) => (
+          {mock.categorias.map((category) => (
             <Categories
               key={category.id}
               onClick={() => setSelectedCategory(category)}
@@ -173,16 +142,23 @@ export const Feed = () => {
         handleAddToCart={handleAddToCart}
       />
       <Card>
-        {filterProducts.map((product) => (
-          <Cards key={product.id} onClick={() => handleOpenModal(product)}>
-            <img src={ImgCard1} alt="Imagem do produto do card" />
-            <LegendProduct>
-              <h5>{product.nome}</h5>
-              <p>Preço: R${product.preco.toFixed(2)}</p>
-            </LegendProduct>
-          </Cards>
-          // Obs: Foi deixado apenas uma imagem, pois fiquei na dúvida se poderia alterar o banco de dados para adicionar uma coluna imagens e asasim, posteriormente fazer o map para cada card respectivo.
-        ))}
+        {mock.produtos
+          .filter(
+            (product) =>
+              (selectedCategory === null ||
+                product.categoria_id === selectedCategory.id) &&
+              product.nome.toLowerCase().includes(inputSearch.toLowerCase())
+          )
+          .map((product) => (
+            <Cards key={product.id} onClick={() => handleOpenModal(product)}>
+              <img src={ImgCard1} alt="Imagem do produto do card" />
+              <LegendProduct>
+                <h5>{product.nome}</h5>
+                <p>Preço: R${product.preco.toFixed(2)}</p>
+              </LegendProduct>
+            </Cards>
+            // Obs: Foi deixado apenas uma imagem e apenas duas categorias, pois fiquei na dúvida se poderia alterar o banco de dados para adicionar uma coluna imagens e novas categorias, posteriormente fazer o map para cada card respectivo.
+          ))}
       </Card>
 
       <CustomModal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
